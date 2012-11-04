@@ -1,0 +1,33 @@
+diff -aurN mozilla-1.9.2.orig/extensions/spellcheck/hunspell/src/hunspell.cpp mozilla-1.9.2/extensions/spellcheck/hunspell/src/hunspell.cpp
+--- mozilla-1.9.2.orig/extensions/spellcheck/hunspell/src/hunspell.cpp	2011-03-08 17:44:23.000000000 +0100
++++ mozilla-1.9.2/extensions/spellcheck/hunspell/src/hunspell.cpp	2011-03-08 17:51:52.000000000 +0100
+@@ -59,8 +59,13 @@
+ #include <string.h>
+ #include <stdio.h>
+ 
++#ifdef MOZ_NATIVE_HUNSPELL
++#include <hunspell.hxx>
++#include <hunspell.h>
++#else
+ #include "hunspell.hxx"
+ #include "hunspell.h"
++#endif
+ #ifndef MOZILLA_CLIENT
+ #    include "config.h"
+ #endif
+diff -aurN mozilla-1.9.2.orig/extensions/spellcheck/hunspell/src/mozHunspell.h mozilla-1.9.2/extensions/spellcheck/hunspell/src/mozHunspell.h
+--- mozilla-1.9.2.orig/extensions/spellcheck/hunspell/src/mozHunspell.h	2011-03-08 17:44:23.000000000 +0100
++++ mozilla-1.9.2/extensions/spellcheck/hunspell/src/mozHunspell.h	2011-03-08 17:53:04.000000000 +0100
+@@ -59,7 +59,12 @@
+ #ifndef mozHunspell_h__
+ #define mozHunspell_h__
+ 
++#ifdef MOZ_NATIVE_HUNSPELL
+ #include <hunspell.hxx>
++#else
++#include "hunspell.hxx"
++#endif
++
+ #include "mozISpellCheckingEngine.h"
+ #include "mozIPersonalDictionary.h"
+ #include "nsString.h"
