@@ -14,6 +14,7 @@ Source100:	vendor.js
 Patch0:		%{name}-install-dir.patch
 Patch1:		firefox-hunspell.patch
 Patch2:		firefox-system-cairo.patch
+Patch3:		firefox-virtualenv.patch
 URL:		http://www.mozilla.org/projects/firefox/
 BuildRequires:	GConf-devel
 BuildRequires:	OpenGL-devel
@@ -66,6 +67,7 @@ cd comm-release
 
 cd mozilla
 %patch1 -p1
+%patch3 -p1
 
 # use system headers
 rm -f extensions/spellcheck/hunspell/src/*.hxx
