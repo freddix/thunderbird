@@ -1,6 +1,5 @@
-diff -aurN mozilla-release.orig/other-licenses/virtualenv/virtualenv.py mozilla-release/other-licenses/virtualenv/virtualenv.py
---- mozilla-release.orig/other-licenses/virtualenv/virtualenv.py	2012-09-30 23:15:22.696050405 +0200
-+++ mozilla-release/other-licenses/virtualenv/virtualenv.py	2012-09-30 23:12:53.000000000 +0200
+--- mozilla-release.orig/python/virtualenv/virtualenv.py	2012-09-30 23:15:22.696050405 +0200
++++ mozilla-release/python/virtualenv/virtualenv.py	2012-09-30 23:12:53.000000000 +0200
 @@ -71,7 +71,10 @@
                      'fnmatch', 'locale', 'encodings', 'codecs',
                      'stat', 'UserDict', 'readline', 'copy_reg', 'types',
@@ -9,7 +8,7 @@ diff -aurN mozilla-release.orig/other-licenses/virtualenv/virtualenv.py mozilla-
 +                    'zlib', 'time', 'cStringIO', 'md5', '_hashlib', '_struct',
 +                    '_collections', 'operator', 'itertools', 'math', 'binascii', 
 +                    '_random', '_io', '_functools', 'array', '_socket', 'select',
-+                    'fcntl', 'cPickle', 'datetime', 'syslog', '_sqlite3', 'unicodedata']
++                    'fcntl', 'cPickle', 'datetime', 'syslog', '_sqlite3', 'unicodedata', 'parser']
  
  REQUIRED_FILES = ['lib-dynload', 'config']
  

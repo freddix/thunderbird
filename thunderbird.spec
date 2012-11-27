@@ -1,11 +1,11 @@
 Summary:	E-mail client
 Name:		thunderbird
-Version:	16.0.2
+Version:	17.0
 Release:	1
 License:	MPL v1.1 or GPL v2+ or LGPL v2.1+
 Group:		X11/Applications
 Source0:	http://releases.mozilla.org/pub/mozilla.org/%{name}/releases/%{version}/source/%{name}-%{version}.source.tar.bz2
-# Source0-md5:	a01a6c66f107f31c3991849af526011f
+# Source0-md5:	f3690660044337273efb52f79cb15b0e
 Source1:	http://releases.mozilla.org/pub/mozilla.org/%{name}/releases/%{version}/linux-i686/xpi/de.xpi
 # Source1-md5:	bc33f6b5cc4f2006185622d6ffc53367
 Source2:	http://releases.mozilla.org/pub/mozilla.org/%{name}/releases/%{version}/linux-i686/xpi/pl.xpi
