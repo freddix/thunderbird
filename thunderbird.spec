@@ -1,20 +1,21 @@
 Summary:	E-mail client
 Name:		thunderbird
-Version:	17.0
+Version:	17.0.2
 Release:	1
 License:	MPL v1.1 or GPL v2+ or LGPL v2.1+
 Group:		X11/Applications
 Source0:	http://releases.mozilla.org/pub/mozilla.org/%{name}/releases/%{version}/source/%{name}-%{version}.source.tar.bz2
-# Source0-md5:	f3690660044337273efb52f79cb15b0e
+# Source0-md5:	9b7f15fbc672745571d47a3c0e227ca1
 Source1:	http://releases.mozilla.org/pub/mozilla.org/%{name}/releases/%{version}/linux-i686/xpi/de.xpi
-# Source1-md5:	bc33f6b5cc4f2006185622d6ffc53367
+# Source1-md5:	bf949e10311d05dc7c373dc915bdaa48
 Source2:	http://releases.mozilla.org/pub/mozilla.org/%{name}/releases/%{version}/linux-i686/xpi/pl.xpi
-# Source2-md5:	20728f10ebc64a50881d48e032dc5437
+# Source2-md5:	f65e9b5a3ccf7031c91e80a2c8536319
 Source100:	vendor.js
 Patch0:		%{name}-install-dir.patch
 Patch1:		firefox-hunspell.patch
 Patch2:		firefox-system-cairo.patch
 Patch3:		firefox-virtualenv.patch
+Patch4:		xulrunner-gyp-slashism.patch
 URL:		http://www.mozilla.org/projects/firefox/
 BuildRequires:	GConf-devel
 BuildRequires:	OpenGL-devel
@@ -68,6 +69,7 @@ cd comm-release
 cd mozilla
 %patch1 -p1
 %patch3 -p1
+%patch4 -p2
 
 # use system headers
 rm -f extensions/spellcheck/hunspell/src/*.hxx
