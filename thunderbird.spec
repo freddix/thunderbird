@@ -1,15 +1,15 @@
 Summary:	E-mail client
 Name:		thunderbird
-Version:	17.0.2
+Version:	17.0.5
 Release:	1
 License:	MPL v1.1 or GPL v2+ or LGPL v2.1+
 Group:		X11/Applications
 Source0:	http://releases.mozilla.org/pub/mozilla.org/%{name}/releases/%{version}/source/%{name}-%{version}.source.tar.bz2
-# Source0-md5:	9b7f15fbc672745571d47a3c0e227ca1
+# Source0-md5:	609a11ce7bb246cebf67d993a035ca52
 Source1:	http://releases.mozilla.org/pub/mozilla.org/%{name}/releases/%{version}/linux-i686/xpi/de.xpi
-# Source1-md5:	bf949e10311d05dc7c373dc915bdaa48
+# Source1-md5:	e81e63d8fac6c61cbbe72b1c8b0ce05c
 Source2:	http://releases.mozilla.org/pub/mozilla.org/%{name}/releases/%{version}/linux-i686/xpi/pl.xpi
-# Source2-md5:	f65e9b5a3ccf7031c91e80a2c8536319
+# Source2-md5:	8fc0aea02c1373f0ac0b7fa7eac2fa0c
 Source100:	vendor.js
 Patch0:		%{name}-install-dir.patch
 Patch1:		firefox-hunspell.patch
@@ -62,7 +62,7 @@ E-mail client.
 %prep
 %setup -qc
 
-cd comm-release
+cd comm-esr17
 %patch0 -p1
 %patch2 -p1
 
@@ -80,7 +80,7 @@ echo 'LOCAL_INCLUDES += $(MOZ_HUNSPELL_CFLAGS)' >> extensions/spellcheck/src/Mak
 sed -i -e "s|xargs rm|xargs rm -f|g" toolkit/mozapps/installer/packager.mk
 
 %build
-cd comm-release
+cd comm-esr17
 cp -f %{_datadir}/automake/config.* build/autoconf
 
 cat << 'EOF' > .mozconfig
@@ -142,8 +142,8 @@ mk_add_options MOZILLA_OFFICIAL=1
 
 EOF
 
-export CFLAGS="%{rpmcflags}"
-export CXXFLAGS="%{rpmcflags}"
+export CFLAGS="%(echo %{rpmcflags} | sed 's/ -g2/ -g1/g')"
+export CXXFLAGS="%(echo %{rpmcxxflags} | sed 's/ -g2/ -g1/g')"
 export LDFLAGS="%{rpmldflags} -Wl,-rpath,%{_libdir}/thunderbird"
 
 %{__make} -f client.mk build		\
@@ -157,7 +157,7 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_desktopdir}}	\
 	$RPM_BUILD_ROOT%{_iconsdir}/hicolor/{16x16,22x22,24x24,32x32,48x48,256x256}/apps
 
-cd comm-release
+cd comm-esr17
 
 %{__make} -j1 -f client.mk install		\
 	DESTDIR=$RPM_BUILD_ROOT		\
