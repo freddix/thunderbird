@@ -1,15 +1,15 @@
 Summary:	E-mail client
 Name:		thunderbird
-Version:	17.0.5
+Version:	17.0.6
 Release:	1
 License:	MPL v1.1 or GPL v2+ or LGPL v2.1+
 Group:		X11/Applications
 Source0:	http://releases.mozilla.org/pub/mozilla.org/%{name}/releases/%{version}/source/%{name}-%{version}.source.tar.bz2
-# Source0-md5:	609a11ce7bb246cebf67d993a035ca52
+# Source0-md5:	e3be03513d038bbbcf8cca8a3652170b
 Source1:	http://releases.mozilla.org/pub/mozilla.org/%{name}/releases/%{version}/linux-i686/xpi/de.xpi
-# Source1-md5:	e81e63d8fac6c61cbbe72b1c8b0ce05c
+# Source1-md5:	c06da3cbecd7815f9fdfae5d5f28de9d
 Source2:	http://releases.mozilla.org/pub/mozilla.org/%{name}/releases/%{version}/linux-i686/xpi/pl.xpi
-# Source2-md5:	8fc0aea02c1373f0ac0b7fa7eac2fa0c
+# Source2-md5:	0b8a90721676065a093ea68d3474af85
 Source100:	vendor.js
 Patch0:		%{name}-install-dir.patch
 Patch1:		firefox-hunspell.patch
