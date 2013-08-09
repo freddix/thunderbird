@@ -1,15 +1,15 @@
 Summary:	E-mail client
 Name:		thunderbird
-Version:	17.0.6
+Version:	17.0.8
 Release:	1
 License:	MPL v1.1 or GPL v2+ or LGPL v2.1+
 Group:		X11/Applications
 Source0:	http://releases.mozilla.org/pub/mozilla.org/%{name}/releases/%{version}/source/%{name}-%{version}.source.tar.bz2
-# Source0-md5:	e3be03513d038bbbcf8cca8a3652170b
+# Source0-md5:	e4aee8852e94e455930bf482aecdbcd4
 Source1:	http://releases.mozilla.org/pub/mozilla.org/%{name}/releases/%{version}/linux-i686/xpi/de.xpi
-# Source1-md5:	c06da3cbecd7815f9fdfae5d5f28de9d
+# Source1-md5:	3b4b2cee9016abd15da1bcd6286dbc6c
 Source2:	http://releases.mozilla.org/pub/mozilla.org/%{name}/releases/%{version}/linux-i686/xpi/pl.xpi
-# Source2-md5:	0b8a90721676065a093ea68d3474af85
+# Source2-md5:	9604a4e8c42e605c04e77d204bad5664
 Source100:	vendor.js
 Patch0:		%{name}-install-dir.patch
 Patch1:		firefox-hunspell.patch
@@ -64,7 +64,7 @@ E-mail client.
 
 cd comm-esr17
 %patch0 -p1
-%patch2 -p1
+#%patch2 -p1
 
 cd mozilla
 %patch1 -p1
@@ -72,12 +72,12 @@ cd mozilla
 %patch4 -p2
 
 # use system headers
-rm -f extensions/spellcheck/hunspell/src/*.hxx
+%{__rm} extensions/spellcheck/hunspell/src/*.hxx
 echo 'LOCAL_INCLUDES += $(MOZ_HUNSPELL_CFLAGS)' >> extensions/spellcheck/src/Makefile.in
 
 # find ../../dist/sdk -name "*.pyc" | xargs rm
 # rm: missing operand
-sed -i -e "s|xargs rm|xargs rm -f|g" toolkit/mozapps/installer/packager.mk
+%{__sed} -i "s|xargs rm|xargs rm -f|g" toolkit/mozapps/installer/packager.mk
 
 %build
 cd comm-esr17
@@ -105,19 +105,19 @@ ac_add_options --disable-updater
 #
 ac_add_options --enable-safe-browsing
 #
-ac_add_options --disable-debugOp
+ac_add_options --disable-debug
 ac_add_options --disable-pedantic
 ac_add_options --disable-strip
 ac_add_options --disable-strip-install
 #
-ac_add_options --enable-optimize
+ac_add_options --enable-optimize="-O2"
 #
 ac_add_options --disable-gnomeui
 ac_add_options --disable-gnomevfs
 ac_add_options --enable-gio
 ac_add_options --enable-startup-notification
 #
-ac_add_options --enable-system-cairo
+#ac_add_options --enable-system-cairo
 ac_add_options --enable-system-hunspell
 ac_add_options --enable-system-lcms
 ac_add_options --enable-system-sqlite
@@ -146,6 +146,7 @@ export CFLAGS="%(echo %{rpmcflags} | sed 's/ -g2/ -g1/g')"
 export CXXFLAGS="%(echo %{rpmcxxflags} | sed 's/ -g2/ -g1/g')"
 export LDFLAGS="%{rpmldflags} -Wl,-rpath,%{_libdir}/thunderbird"
 
+%{__make} -f client.mk configure
 %{__make} -f client.mk build		\
 	CC="%{__cc}"			\
 	CXX="%{__cxx}"			\
