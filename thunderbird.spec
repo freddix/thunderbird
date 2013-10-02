@@ -1,23 +1,21 @@
 Summary:	E-mail client
 Name:		thunderbird
-Version:	17.0.8
+Version:	24.0
 Release:	1
 License:	MPL v1.1 or GPL v2+ or LGPL v2.1+
 Group:		X11/Applications
-Source0:	http://releases.mozilla.org/pub/mozilla.org/%{name}/releases/%{version}/source/%{name}-%{version}.source.tar.bz2
-# Source0-md5:	e4aee8852e94e455930bf482aecdbcd4
-Source1:	http://releases.mozilla.org/pub/mozilla.org/%{name}/releases/%{version}/linux-i686/xpi/de.xpi
-# Source1-md5:	3b4b2cee9016abd15da1bcd6286dbc6c
-Source2:	http://releases.mozilla.org/pub/mozilla.org/%{name}/releases/%{version}/linux-i686/xpi/pl.xpi
-# Source2-md5:	9604a4e8c42e605c04e77d204bad5664
+Source0:	ftp://ftp.mozilla.org/pub/thunderbird/releases/%{version}/source/%{name}-%{version}.source.tar.bz2
+# Source0-md5:	38f4b2e574751e4e6cbe36dc8b3bce20
+Source1:	ftp://ftp.mozilla.org/pub/thunderbird/releases/%{version}/linux-i686/xpi/de.xpi
+# Source1-md5:	7800c97656d7c969d7d99efaf5449547
+Source2:	ftp://ftp.mozilla.org/pub/thunderbird/releases/%{version}/linux-i686/xpi/pl.xpi
+# Source2-md5:	2c377b2b3dcbe5869c2db0dda2de06ed
 Source100:	vendor.js
 Patch0:		%{name}-install-dir.patch
 Patch1:		firefox-hunspell.patch
 Patch2:		firefox-system-cairo.patch
 Patch3:		firefox-virtualenv.patch
-Patch4:		xulrunner-gyp-slashism.patch
 URL:		http://www.mozilla.org/projects/firefox/
-BuildRequires:	GConf-devel
 BuildRequires:	OpenGL-devel
 BuildRequires:	automake
 BuildRequires:	bzip2-devel
@@ -44,6 +42,7 @@ BuildRequires:	xorg-libXcursor-devel
 BuildRequires:	xorg-libXft-devel
 BuildRequires:	zip
 BuildRequires:	zlib-devel
+BuildConflicts:	xulrunner-devel
 Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	/usr/bin/gtk-update-icon-cache
 Requires(post,postun):	hicolor-icon-theme
@@ -62,14 +61,13 @@ E-mail client.
 %prep
 %setup -qc
 
-cd comm-esr17
+cd comm-esr24
 %patch0 -p1
 #%patch2 -p1
 
 cd mozilla
 %patch1 -p1
 %patch3 -p1
-%patch4 -p2
 
 # use system headers
 %{__rm} extensions/spellcheck/hunspell/src/*.hxx
@@ -80,7 +78,7 @@ echo 'LOCAL_INCLUDES += $(MOZ_HUNSPELL_CFLAGS)' >> extensions/spellcheck/src/Mak
 %{__sed} -i "s|xargs rm|xargs rm -f|g" toolkit/mozapps/installer/packager.mk
 
 %build
-cd comm-esr17
+cd comm-esr24
 cp -f %{_datadir}/automake/config.* build/autoconf
 
 cat << 'EOF' > .mozconfig
@@ -117,6 +115,7 @@ ac_add_options --disable-gnomevfs
 ac_add_options --enable-gio
 ac_add_options --enable-startup-notification
 #
+ac_add_options --disable-gstreamer
 #ac_add_options --enable-system-cairo
 ac_add_options --enable-system-hunspell
 ac_add_options --enable-system-lcms
@@ -151,14 +150,14 @@ export LDFLAGS="%{rpmldflags} -Wl,-rpath,%{_libdir}/thunderbird"
 	CC="%{__cc}"			\
 	CXX="%{__cxx}"			\
 	MOZ_MAKE_FLAGS=%{?_smp_mflags}	\
-	STRIP="/bin/true"
+	STRIP="/usr/bin/true"
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_desktopdir}}	\
 	$RPM_BUILD_ROOT%{_iconsdir}/hicolor/{16x16,22x22,24x24,32x32,48x48,256x256}/apps
 
-cd comm-esr17
+cd comm-esr24
 
 %{__make} -j1 -f client.mk install		\
 	DESTDIR=$RPM_BUILD_ROOT		\
@@ -231,7 +230,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/%{name}/libldif60.so
 %attr(755,root,root) %{_libdir}/%{name}/libmozalloc.so
 %attr(755,root,root) %{_libdir}/%{name}/libprldap60.so
-%attr(755,root,root) %{_libdir}/%{name}/libxpcom.so
 %attr(755,root,root) %{_libdir}/%{name}/libxul.so
 
 %attr(755,root,root) %{_libdir}/%{name}/mozilla-xremote-client
@@ -243,7 +241,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/%{name}/blocklist.xml
 %{_libdir}/%{name}/chrome
 %{_libdir}/%{name}/chrome.manifest
-%{_libdir}/%{name}/components/binary.manifest
+%{_libdir}/%{name}/components/components.manifest
 %{_libdir}/%{name}/defaults/messenger
 %{_libdir}/%{name}/defaults/pref/channel-prefs.js
 %{_libdir}/%{name}/defaults/pref/vendor.js

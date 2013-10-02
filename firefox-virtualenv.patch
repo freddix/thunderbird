@@ -5,9 +5,9 @@
                      'stat', 'UserDict', 'readline', 'copy_reg', 'types',
                      're', 'sre', 'sre_parse', 'sre_constants', 'sre_compile',
 -                    'zlib']
-+                    'zlib', 'time', 'cStringIO', 'md5', '_hashlib', '_struct',
-+                    '_collections', 'operator', 'itertools', 'math', 'binascii', 
-+                    '_random', '_io', '_functools', 'array', '_socket', 'select',
++                    'bz2', 'zlib', 'time', 'cStringIO', 'md5', '_hashlib', '_struct',
++                    '_collections', 'operator', 'itertools', 'math', 'binascii',
++                    '_random', '_io', '_functools', 'array', '_socket', 'select', '_multiprocessing',
 +                    'fcntl', 'cPickle', 'datetime', 'syslog', '_sqlite3', 'unicodedata', 'parser']
  
  REQUIRED_FILES = ['lib-dynload', 'config']
