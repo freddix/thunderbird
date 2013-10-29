@@ -1,7 +1,7 @@
 Summary:	E-mail client
 Name:		thunderbird
 Version:	24.0.1
-Release:	1
+Release:	2
 License:	MPL v1.1 or GPL v2+ or LGPL v2.1+
 Group:		X11/Applications
 Source0:	ftp://ftp.mozilla.org/pub/thunderbird/releases/%{version}/source/%{name}-%{version}.source.tar.bz2
@@ -163,10 +163,10 @@ cd comm-esr24
 	DESTDIR=$RPM_BUILD_ROOT		\
 	STRIP="/bin/true"
 
-install %{SOURCE1} $RPM_BUILD_ROOT%{_libdir}/%{name}/extensions/langpack-de@firefox.mozilla.org.xpi
-install %{SOURCE2} $RPM_BUILD_ROOT%{_libdir}/%{name}/extensions/langpack-pl@firefox.mozilla.org.xpi
+install %{SOURCE1} $RPM_BUILD_ROOT%{_libdir}/%{name}/extensions/langpack-de@thunderbird.mozilla.org.xpi
+install %{SOURCE2} $RPM_BUILD_ROOT%{_libdir}/%{name}/extensions/langpack-pl@thunderbird.mozilla.org.xpi
 
-install %{SOURCE100} $RPM_BUILD_ROOT%{_libdir}/%{name}/defaults/pref
+install %{SOURCE100} $RPM_BUILD_ROOT%{_libdir}/%{name}/defaults/preferences/vendor.js
 
 %{__rm} -r $RPM_BUILD_ROOT%{_libdir}/%{name}/dictionaries
 
