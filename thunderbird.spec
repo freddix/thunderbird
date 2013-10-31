@@ -215,6 +215,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/%{name}/components
 %dir %{_libdir}/%{name}/defaults
 %dir %{_libdir}/%{name}/defaults/pref
+%dir %{_libdir}/%{name}/defaults/preferences
 %dir %{_libdir}/%{name}/dictionaries
 %dir %{_libdir}/%{name}/extensions
 %dir %{_libdir}/%{name}/hyphenation
