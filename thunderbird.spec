@@ -1,20 +1,19 @@
 Summary:	E-mail client
 Name:		thunderbird
-Version:	24.0.1
-Release:	2
+Version:	24.1.0
+Release:	1
 License:	MPL v1.1 or GPL v2+ or LGPL v2.1+
 Group:		X11/Applications
 Source0:	ftp://ftp.mozilla.org/pub/thunderbird/releases/%{version}/source/%{name}-%{version}.source.tar.bz2
-# Source0-md5:	c45da94c03fe5bdd624ca016058a8eb2
+# Source0-md5:	39da7c856f5d1e91a7c5cdf37506d57e
 Source1:	ftp://ftp.mozilla.org/pub/thunderbird/releases/%{version}/linux-i686/xpi/de.xpi
-# Source1-md5:	54e2f129f10caebcf0590568e038c51a
+# Source1-md5:	11ec3aae2c13c5133b0e94faa70dad40
 Source2:	ftp://ftp.mozilla.org/pub/thunderbird/releases/%{version}/linux-i686/xpi/pl.xpi
-# Source2-md5:	641602203d1a81e993bae85a895b30ee
+# Source2-md5:	df31297327a9bf92391e420b8834d1db
 Source100:	vendor.js
 Patch0:		%{name}-install-dir.patch
 Patch1:		firefox-hunspell.patch
-Patch2:		firefox-system-cairo.patch
-Patch3:		firefox-virtualenv.patch
+Patch2:		firefox-virtualenv.patch
 URL:		http://www.mozilla.org/projects/firefox/
 BuildRequires:	OpenGL-devel
 BuildRequires:	automake
@@ -63,11 +62,10 @@ E-mail client.
 
 cd comm-esr24
 %patch0 -p1
-#%patch2 -p1
 
 cd mozilla
 %patch1 -p1
-%patch3 -p1
+%patch2 -p1
 
 # use system headers
 %{__rm} extensions/spellcheck/hunspell/src/*.hxx
@@ -166,7 +164,7 @@ cd comm-esr24
 install %{SOURCE1} $RPM_BUILD_ROOT%{_libdir}/%{name}/extensions/langpack-de@thunderbird.mozilla.org.xpi
 install %{SOURCE2} $RPM_BUILD_ROOT%{_libdir}/%{name}/extensions/langpack-pl@thunderbird.mozilla.org.xpi
 
-install %{SOURCE100} $RPM_BUILD_ROOT%{_libdir}/%{name}/defaults/preferences/vendor.js
+install -D %{SOURCE100} $RPM_BUILD_ROOT%{_libdir}/%{name}/defaults/preferences/vendor.js
 
 %{__rm} -r $RPM_BUILD_ROOT%{_libdir}/%{name}/dictionaries
 
@@ -244,14 +242,14 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/%{name}/components/components.manifest
 %{_libdir}/%{name}/defaults/messenger
 %{_libdir}/%{name}/defaults/pref/channel-prefs.js
-%{_libdir}/%{name}/defaults/pref/vendor.js
+%{_libdir}/%{name}/defaults/preferences/vendor.js
 %{_libdir}/%{name}/extensions/{972ce4c6-7e08-4474-a285-3208198ce6fd}
 %{_libdir}/%{name}/isp
 %{_libdir}/%{name}/omni.ja
 %{_libdir}/%{name}/searchplugins
 
-%lang(de) %{_libdir}/%{name}/extensions/langpack-de@firefox.mozilla.org.xpi
-%lang(pl) %{_libdir}/%{name}/extensions/langpack-pl@firefox.mozilla.org.xpi
+%lang(de) %{_libdir}/%{name}/extensions/langpack-de@thunderbird.mozilla.org.xpi
+%lang(pl) %{_libdir}/%{name}/extensions/langpack-pl@thunderbird.mozilla.org.xpi
 
 %{_desktopdir}/%{name}.desktop
 %{_iconsdir}/hicolor/*/apps/*.png
