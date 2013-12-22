@@ -1,15 +1,15 @@
 Summary:	E-mail client
 Name:		thunderbird
-Version:	24.1.1
+Version:	24.2.0
 Release:	1
 License:	MPL v1.1 or GPL v2+ or LGPL v2.1+
 Group:		X11/Applications
 Source0:	ftp://ftp.mozilla.org/pub/thunderbird/releases/%{version}/source/%{name}-%{version}.source.tar.bz2
-# Source0-md5:	55540c5a5b5c30fa1002bbaa76c22546
+# Source0-md5:	53d457a8ff97a305d975c20d1bebff04
 Source1:	ftp://ftp.mozilla.org/pub/thunderbird/releases/%{version}/linux-i686/xpi/de.xpi
-# Source1-md5:	02352099e2bb79b9ed57b8b735d1b662
+# Source1-md5:	e3c7a12c3cd115f89472e714de9bbd96
 Source2:	ftp://ftp.mozilla.org/pub/thunderbird/releases/%{version}/linux-i686/xpi/pl.xpi
-# Source2-md5:	76ec5c28687220f39bac18fd2381ab29
+# Source2-md5:	cbc9d67c7c46a14517925674c7ce9241
 Source100:	vendor.js
 Patch0:		%{name}-install-dir.patch
 Patch1:		firefox-hunspell.patch
@@ -21,7 +21,6 @@ BuildRequires:	bzip2-devel
 BuildRequires:	cairo-devel >= 1.10.2-2
 BuildRequires:	gtk+-devel
 BuildRequires:	hunspell-devel
-BuildRequires:	libIDL-devel
 BuildRequires:	libevent-devel
 BuildRequires:	libffi-devel
 BuildRequires:	libjpeg-devel
