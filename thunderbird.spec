@@ -1,15 +1,15 @@
 Summary:	E-mail client
 Name:		thunderbird
-Version:	24.3.0
+Version:	24.4.0
 Release:	1
 License:	MPL v1.1 or GPL v2+ or LGPL v2.1+
 Group:		X11/Applications
 Source0:	ftp://ftp.mozilla.org/pub/thunderbird/releases/%{version}/source/%{name}-%{version}.source.tar.bz2
-# Source0-md5:	3093e14a3635123c0c70c8c11c27c7b1
+# Source0-md5:	a25af92e0f328136c014fcc22b5eacd0
 Source1:	ftp://ftp.mozilla.org/pub/thunderbird/releases/%{version}/linux-i686/xpi/de.xpi
-# Source1-md5:	0eb3e249f5950feebdfbe3abca393b9f
+# Source1-md5:	37e8dfd5b1221d4f72195a06497fad72
 Source2:	ftp://ftp.mozilla.org/pub/thunderbird/releases/%{version}/linux-i686/xpi/pl.xpi
-# Source2-md5:	d059f84aaad99f16fc7aff65caeeb1cb
+# Source2-md5:	26440002e34ef51b920d0382e46faa37
 Source100:	vendor.js
 Patch0:		%{name}-install-dir.patch
 Patch1:		firefox-hunspell.patch
